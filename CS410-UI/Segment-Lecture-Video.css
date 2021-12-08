@@ -33,3 +33,9 @@
     height: 191px;
   }
 }
+
+.segmentation-input {
+  margin: auto;
+  text-align: center;
+  padding: auto;
+}
