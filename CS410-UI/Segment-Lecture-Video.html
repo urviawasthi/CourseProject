@@ -8,13 +8,36 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Segment Lecture Video</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Segment-Lecture-Video.css" media="screen">
+    <link rel="stylesheet" href="Segment-Lecture-Video.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="segment_lecture_video.js"></script>
     <meta name="generator" content="Nicepage 4.1.0, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    
+    <script>
+      function goPython(){
+        // need to send transcript name and number of topics to backend
+        var num_topics = document.getElementById("quantity").value
+        console.log("number of topics: ", num_topics)
+
+        var transcript_name = localStorage.getItem('lecture_number')
+        console.log("lecture / transcript name: ", transcript_name)
+        
+        $.ajax({
+            url: 'http://localhost:8080',
+            type: "POST",
+            data: "{\"num_topics\": " + num_topics + ", \"transcript_name\": \"" + transcript_name + "\"}",
+            success: function (data) {
+              console.log(data);
+            },
+            failure: function (msg) { 
+              console.log(msg)
+            }
+        });
+      }
+    </script>
+
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -59,6 +82,15 @@
           </div>
         </nav>
       </div></header>
+
+    <h2 class = "segmentation-input">Required Inputs for Topic Segmentation</h2>
+
+    <form class = "segmentation-input">
+      <label for="fname">Enter Number of Topics to Segment Lecture Into:</label><br>
+      <input type="number" id="quantity" name="quantity" min="1" max="10">
+      <input type="button" value="Submit" onclick = "goPython()">
+    </form> 
+
     <section class="u-clearfix u-section-1" id="sec-761d">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-video u-video-contain u-video-1">
