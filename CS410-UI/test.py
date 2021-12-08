@@ -20,7 +20,7 @@ class MyServer(SimpleHTTPRequestHandler):
 
         print(num_topics, " topics")
         print(transcript_name, " is the name of the transcript")
-
+        
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header("Content-type", "application/json")
