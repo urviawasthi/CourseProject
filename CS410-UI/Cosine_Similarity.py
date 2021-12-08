@@ -89,7 +89,7 @@ def get_previous_segment(start_time, sentence_timestamp):
         previous_key = key
     return None
 
-def get_smallest_segment(sentence_timestamp): # takes the dictionary of {sentence: [start_time, end_time, duration]} as the parameter
+def get_smallest_segment(sentence_timestamp): # takes the dictionary of {starttime: [sentence, end_time, duration]} as the parameter
     key_of_smallest_segment = ""
     min_duration = timedelta(10) # 10 days is max duration for comparison purposes 
     for key, value in sentence_timestamp.items():
