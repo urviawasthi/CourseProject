@@ -4,6 +4,7 @@ import time
 import simplejson
 import threading
 import webbrowser
+import Cosine_Similarity
 
 hostName = "localhost"
 serverPort = 8080
@@ -16,11 +17,19 @@ class MyServer(SimpleHTTPRequestHandler):
         function_input = simplejson.loads(read_in)
        
         num_topics = function_input["num_topics"]
-        transcript_name = function_input["num_topics"]
+        transcript_name = function_input["transcript_name"]
 
         print(num_topics, " topics")
-        print(transcript_name, " is the name of the transcript")
         
+        transcript_name = "../human_corrected_transcripts/textretrieval/" + transcript_name + ".vtt"
+
+        print(transcript_name, " is the name of the transcript")
+
+        # run code for text based indexing
+        sentence_timestamp = Cosine_Similarity.find_lecture_segments(transcript_name, num_topics)
+        for key, value in sentence_timestamp.items():
+            print(key)
+
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header("Content-type", "application/json")
