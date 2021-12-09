@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chapter Test</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<figure id="video-track-container">
+<video controls="" id="downtown-los-angeles">
+    <source src="https://s3.us-east-2.amazonaws.com/smartmoocs.illinois.edu/textretrieval/Lesson+1.2+Text+Access.mp4"/>
+    <track kind="chapters" label="Locations" src="lecture.vtt" srclang="en" default="" type="text/vtt"/>
+</video>
+<figcaption tabindex="0" role="menu" aria-label="Message Log">
+<ol id="chapters">
+
+</ol>
+</figcaption>
+</figure>
+
+<style type="text/css">
+figure {
+
+font-size: 0;
+
+position: relative;
+
+background: #000;
+
+}
+
+figure video {
+
+width: 75%;
+
+height: auto;
+
+display: inline-block;
+
+}
+
+figure figcaption {
+
+position: absolute;
+
+right: 0; top: 0;
+
+background: #222;
+
+width: 25%;
+
+font-size: .8rem;
+
+color: #666;
+
+height: 100%;
+
+overflow-y: scroll;
+
+}
+
+figure figcaption ol {
+
+position: relative;
+
+list-style-type: none;
+
+margin: 0; padding: 0;
+
+}
+
+figure figcaption ol li {
+
+padding: .7rem 1rem;
+
+border-bottom: 1px dashed #000;
+
+transition: .3s;
+
+}
+
+.current {
+
+background: hsl(45,80%,50%);
+
+color: #000;
+
+}
+</style>
+
+<script>
+    $(document).ready(function() {
+    var locationList = document.getElementById("chapters"),
+    video = document.getElementById("downtown-los-angeles"),
+    trackElement = video.getElementsByTagName("track")[0];
+    video.addEventListener("loadedmetadata", function run_tests() {
+    if (trackElement.readyState == 1) { setTimeout(run_tests, 0); } else { displayChapters(); }
+    })
+
+    function displayChapters(){
+    if ((trackElement.readyState == 2) && (textTrack = trackElement.track) && (window.matchMedia("(min-width: 500px)").matches)){
+    if(textTrack.kind === "chapters"){
+    textTrack.mode = 'hidden';
+    for (var i = 0; i < textTrack.cues.length; ++i) {
+    var cue = textTrack.cues[i],
+    chapterName = cue.text,
+    start = cue.startTime,
+    newLocale = document.createElement("li"),
+    location = document.createElement("a");
+    location.setAttribute('id', start);
+    location.setAttribute('tabindex', '0');
+    var localeDescription = document.createTextNode(cue.text);
+    location.appendChild(localeDescription);
+    newLocale.appendChild(location);
+    locationList.appendChild(newLocale);
+    location.addEventListener("click",
+    function() {
+    video.currentTime = this.id;
+    }, false);
+
+    }
+    textTrack.addEventListener("cuechange",
+    function() {
+    var currentLocation = this.activeCues[0].startTime;
+    if (chapter = document.getElementById(currentLocation)) {
+    var locations = [].slice.call(document.querySelectorAll("#chapters li a"));
+    for (var i = 0; i < locations.length; ++i) { locations[i].classList.remove("current"); }
+    chapter.classList.add("current");
+    // locationlist.style.top = "-"+chapter.parentNode.offsetTop+"px";
+    // alternative approach, as scrollIntoView will cause entire page to jump if video is not at top of page
+    chapter.scrollIntoView();
+    }
+    },
+    false);
+
+    }
+    }
+    }
+
+    })
+</script>
+
+</body>
+</html>

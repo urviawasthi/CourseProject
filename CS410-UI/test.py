@@ -4,6 +4,8 @@ import time
 import simplejson
 import threading
 import webbrowser
+import Cosine_Similarity
+import LDA 
 
 hostName = "localhost"
 serverPort = 8080
@@ -16,10 +18,21 @@ class MyServer(SimpleHTTPRequestHandler):
         function_input = simplejson.loads(read_in)
        
         num_topics = function_input["num_topics"]
-        transcript_name = function_input["num_topics"]
+        transcript_name = function_input["transcript_name"]
 
         print(num_topics, " topics")
+        
+        transcript_name = "../human_corrected_transcripts/textretrieval/" + transcript_name + ".vtt"
+
         print(transcript_name, " is the name of the transcript")
+
+        # run code for text based indexing
+        sentence_timestamp = Cosine_Similarity.find_lecture_segments(transcript_name, num_topics)
+        for key, value in sentence_timestamp.items():
+            print("Topic starts at time ", key)
+            print("Bag of words representation of the topic at this segment:")
+            LDA.run_LDA_on_segment(value[0])
+
 
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
