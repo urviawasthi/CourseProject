@@ -8,7 +8,7 @@ import Cosine_Similarity
 import LDA 
 
 hostName = "localhost"
-serverPort = 8080
+serverPort = 8081
 
 class MyServer(SimpleHTTPRequestHandler):
     def do_POST(self):
