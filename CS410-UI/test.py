@@ -8,11 +8,10 @@ import Cosine_Similarity
 import LDA 
 
 hostName = "localhost"
-serverPort = 8081
+serverPort = 8080
 
 class MyServer(SimpleHTTPRequestHandler):
     def do_POST(self):
-        print("INSIDE POST")
         content_len = int(self.headers.get('Content-Length'))
         read_in = self.rfile.read(content_len)
         function_input = simplejson.loads(read_in)
@@ -20,19 +19,29 @@ class MyServer(SimpleHTTPRequestHandler):
         num_topics = function_input["num_topics"]
         transcript_name = function_input["transcript_name"]
 
-        print(num_topics, " topics")
         
         transcript_name = "../human_corrected_transcripts/textretrieval/" + transcript_name + ".vtt"
 
-        print(transcript_name, " is the name of the transcript")
+        output_vtt = open("lecture.vtt", "w")
+        output_vtt.write("WEBVTT\n")
 
         # run code for text based indexing
         sentence_timestamp = Cosine_Similarity.find_lecture_segments(transcript_name, num_topics)
         for key, value in sentence_timestamp.items():
             print("Topic starts at time ", key)
+            print("Topic ends at time ", value[1])
             print("Bag of words representation of the topic at this segment:")
-            LDA.run_LDA_on_segment(value[0])
+            words = LDA.run_LDA_on_segment(value[0])
+   
+            start_time = key.strftime("%H:%M:%S")
+            end_time = value[1].strftime("%H:%M:%S")
 
+            output_vtt.write(start_time + ".000" + " --> " + end_time + ".000" + "\n")
+            output_vtt.write(words + "\n")
+        
+        output_vtt.close()
+
+        print("done")
 
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
