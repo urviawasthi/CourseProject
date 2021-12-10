@@ -18,6 +18,7 @@
     <script>
       function goPython(){
         // need to send transcript name and number of topics to backend
+        console.log("HERE")
         var num_topics = document.getElementById("quantity").value
         console.log("number of topics: ", num_topics)
 
@@ -29,7 +30,7 @@
             type: "POST",
             data: "{\"num_topics\": " + num_topics + ", \"transcript_name\": \"" + transcript_name + "\"}",
             success: function (data) {
-              console.log(data);
+              window.location.href = "displaySegments.html";
             },
             failure: function (msg) { 
               console.log(msg)
@@ -100,7 +101,6 @@
         </div>
       </div>
     </section>
-    
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-d5ea"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Smartmoocs 2.0. CS 410 Final Project<br>

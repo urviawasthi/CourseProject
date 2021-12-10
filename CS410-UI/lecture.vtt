@@ -1,9 +1,13 @@
 WEBVTT
-00:00:00.000 --> 00:01:46.000
-0.041*"text" + 0.035*"data" + 0.029*"talk" + 0.029*"go" + 0.029*"access" + 0.029*"user" + 0.029*"pull" + 0.023*"inform" + 0.023*"initi" + 0.023*"process" 
-00:01:47.000 --> 00:04:53.000
-0.072*"inform" + 0.047*"need" + 0.043*"user" + 0.029*"exampl" + 0.029*"search" + 0.025*"queri" + 0.025*"mode" + 0.022*"recommend" + 0.022*"news" + 0.018*"appropri" 
-00:04:54.000 --> 00:07:14.000
-0.057*"know" + 0.047*"queri" + 0.043*"inform" + 0.043*"user" + 0.038*"exact" + 0.033*"brows" + 0.028*"work" + 0.028*"keyword" + 0.024*"case" + 0.019*"right" 
-00:07:14.000 --> 00:09:11.000
-0.043*"inform" + 0.037*"brows" + 0.027*"support" + 0.027*"push" + 0.027*"like" + 0.027*"pull" + 0.027*"want" + 0.021*"interest" + 0.021*"topic" + 0.021*"need" 
+00:00:00.000 --> 00:02:15.000
+0.080*"search" + 0.059*"engin" + 0.037*"user" + 0.032*"better" + 0.027*"learn" + 0.021*"custom" + 0.021*"special" + 0.021*"inform" + 0.021*"trend" + 0.016*"person" 
+00:02:15.000 --> 00:04:24.000
+0.035*"search" + 0.035*"inform" + 0.030*"task" + 0.030*"support" + 0.030*"product" + 0.025*"mode" + 0.020*"exampl" + 0.020*"want" + 0.020*"recommend" + 0.020*"good" 
+00:04:26.000 --> 00:05:54.000
+0.058*"differ" + 0.050*"connect" + 0.041*"kind" + 0.033*"inform" + 0.033*"servic" + 0.033*"specifi" + 0.033*"data" + 0.025*"way" + 0.025*"basic" + 0.025*"imagin" 
+00:05:55.000 --> 00:08:22.000
+0.045*"support" + 0.036*"provid" + 0.027*"custom" + 0.027*"product" + 0.027*"search" + 0.023*"task" + 0.023*"connect" + 0.023*"imagin" + 0.018*"complaint" + 0.018*"help" 
+00:08:22.000 --> 00:11:24.000
+0.039*"search" + 0.036*"inform" + 0.032*"user" + 0.025*"represent" + 0.018*"engin" + 0.018*"access" + 0.014*"model" + 0.014*"intellig" + 0.014*"keyword" + 0.014*"document" 
+00:11:24.000 --> 00:12:55.000
+0.053*"intellig" + 0.046*"inform" + 0.046*"user" + 0.031*"knowledg" + 0.031*"task" + 0.023*"system" + 0.023*"make" + 0.023*"help" + 0.023*"futur" + 0.023*"provid" 

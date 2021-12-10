@@ -47,8 +47,8 @@ class MyServer(SimpleHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header("Content-type", "application/json")
         self.end_headers()
-        # return_value = {"hello": function_input["hello"]}
-        # self.wfile.write(bytes(simplejson.dumps(return_value), "utf-8"))
+        return_value = {"success": "true"}
+        self.wfile.write(bytes(simplejson.dumps(return_value), "utf-8"))
 
 def open_browser():
     """Start a browser after waiting for half a second."""
